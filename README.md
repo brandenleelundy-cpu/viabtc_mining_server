@@ -1,4 +1,6 @@
 Install process for ViaBTC bitcoin mining pool: For Debian 13
+-- Added dependency based .tar.gz files to this git --
+
 
 1. -- Install Git --
 apt-get install git -y
