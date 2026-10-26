@@ -1,3 +1,90 @@
+Install process for ViaBTC bitcoin mining pool: For Debian 13
+
+1. -- Install Git --
+apt-get install git -y
+
+2. -- Clone the Files --
+git clone https://github.com/viabtc/viabtc_mining_server/
+
+3. -- Install Jansson --
+
+wget https://github.com/akheron/jansson/release/download/v2.15.1/jansson-2.15.1.tar.gz
+tar -xvzf jansson-2.15.1.tar.gz
+cd jaansson-2.15.1/
+apt-get install gcc
+./configure --disable-dependency-tracking
+apt-get install make
+make
+make install
+cd
+
+4. -- Install LibEV --
+
+wget https://dist.schmorp.de/libev/libev-4.33.tar.gz
+tar -xvzf libev-4.33.tar.gz
+cd libev-4.33
+./configure
+make
+make install
+cd
+
+5. -- Install LibPSL --
+
+wget https://github.com/rockdaboot/libpsl/releases/download/0.23.3/libpsl-0.23.3.tar.gz
+tar -xvzf libpsl-0.23.3.tar.gz
+cd libpsl-0.23.3
+apt-get install pkg-config
+./configure
+make
+make install
+cd
+
+6. -- Install OpenSSL --
+apt-get install libssl-dev
+
+7. -- Install Curl --
+
+wget https://curl.se/download/curl-8.23.0.tar.gz
+tar -xvzf curl-8.23.0.tar.gz
+cd curl-8.23.0
+./configure --with-openssl
+make
+make install
+cd
+
+8. -- Install HiRedis Database --
+wget https://github.com/redis/hiredis/archive/refs/tags/v1.5.0.tar.gz
+tar -xvzf v1.5.0.tar.gz
+cd hiredis-1.5.0
+make
+make install
+cd
+
+9. -- Make Utils for ViaBTC --
+cd viabtc_mining_server
+cd utils
+make
+
+10. -- Make Network for ViaBTC --
+cd viabtc_mining_server
+cd network
+make
+cd
+
+11. -- Make Gateway.exe for ViaBTC --
+cd viabtc_mining_server
+cd gateway
+make
+
+12. -- Make Log Directories --
+mkdir /var/log/pool
+mkdir /var/log/pool/gateway
+./restart.sh
+
+13. -- Disable X-Windows on Boot --
+sudo systemctl set-default multi-user.target
+
+
 # Viabtc Mining Server
 ViaBTC Mining Server is a high-performance distributed Bitcoin mining pool server. We have 
 made a lot of optimizations for Bitcoin blocks and transaction broadcasting, which can 
